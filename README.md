@@ -1,1 +1,1 @@
-Simple programm that shows weather
+Simple program that shows weather
