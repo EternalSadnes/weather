@@ -9,43 +9,48 @@ import java.util.Map;
 
 public class Weather {
     @SerializedName("weather")
-    private List<Map<String, String>> weather = new ArrayList<>();
+    private final List<Map<String, String>> weather = new ArrayList<>();
     @SerializedName("main")
-    private Map<String, String> mainData = new HashMap<>();
-    private String description;
-    private String temperature;
-    private String pressure;
-    private String humidity;
+    private final Map<String, String> mainData = new HashMap<>();
+    @SerializedName("wind")
+    private final Map<String, String> windData = new HashMap<>();
+    @SerializedName("clouds")
+    private final Map<String, String> cloudsData = new HashMap<>();
+    private String visibility;
+    @SerializedName("name")
+    private String city;
 
-    public void retrieveData(){
-        description = weather.get(0).get("description");
-        temperature = mainData.get("temp");
-        pressure = mainData.get("pressure");
-        humidity = mainData.get("humidity");
+    public String getVisibility() {
+        return visibility;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getWind() {
+        return windData.get("speed");
+    }
+
+    public String getClouds() {
+        return cloudsData.get("all");
     }
 
     public String getDescription() {
-        return description;
+        return weather.get(0).get("description");
     }
 
     public String getTemperature() {
-        return temperature;
+        return mainData.get("temp");
     }
 
     public String getPressure() {
-        return pressure;
+        return mainData.get("pressure");
     }
 
     public String getHumidity() {
-        return humidity;
+        return mainData.get("humidity");
     }
 
-    public void setWeather(List<Map<String, String>> weather) {
-        this.weather = weather;
-    }
-
-    public void setMainData(Map<String, String> mainData) {
-        this.mainData = mainData;
-    }
 
 }

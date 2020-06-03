@@ -1,7 +1,7 @@
 package com.eternal.weatherAPP;
 
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,10 +11,11 @@ import java.io.IOException;
 
 @Controller
 public class MainController {
-    private Session session;
 
     @GetMapping("/")
-    public String showPage() {
+    public String showPage(Model model) {
+        Cities cities = new Cities();
+        model.addAttribute("cities", cities.getCities());
         return "main";
     }
 
@@ -23,8 +24,7 @@ public class MainController {
         if (!cityId.equals("")) {
             WeatherService weatherService = new WeatherService(cityId);
             Weather weather = weatherService.getWeather();
-            weather.retrieveData();
-            session.setAttribute("weather",weather);
+            session.setAttribute("weather", weather);
         }
         return "redirect:/";
     }

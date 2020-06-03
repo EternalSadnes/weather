@@ -2,33 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Weather</title>
 </head>
 <body>
 <form action="/main" method="post">
     Выберите город:<label>
         <select name="cityId">
-            <option value="700568">Mykolaiv</option>
-            <option value="703448">Kyiv</option>
-            <option value="706483">Kharkiv</option>
-            <option value="524894">Moscow</option>
-            <option value="536203">Saint Petersburg</option>
-            <option value="5128581">New York City</option>
-            <option value="3169070">Rome</option>
-            <option value="5603240">Paris</option>
-            <option value="1850147">Tokyo</option>
+            <#list cities as city,cityId>
+                <option value="${cityId}">${city}</option>
+            </#list>
         </select>
     </label>
     <input type="submit">
 </form>
 <#if weather??>
-    Description:${weather.description}
+    Right now in ${weather.city}: ${weather.description}
     <br>
-    Temperature:${weather.temperature}
     <br>
-    Pressure:${weather.pressure}
+    Temperature: ${weather.temperature} ℃
     <br>
-    Humidity:${weather.humidity}
+    <br>
+    Pressure: ${weather.pressure}
+    <br>
+    <br>
+    Humidity: ${weather.humidity}%
+    <br>
+    <br>
+    Wind speed: ${weather.wind} m/s
+    <br>
+    <br>
+    Clouds:${weather.clouds} %
+    <br>
+    <br>
+    <#if weather.visibility??>
+        Visibility: ${weather.visibility}
+        <br>
+        <br>
+    </#if>
 </#if>
 </body>
 </html>
