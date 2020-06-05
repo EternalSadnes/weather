@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="/main" method="post">
-    Выберите город:<label>
+    Choose city:<label>
         <select name="cityId">
             <#list cities as city,cityId>
                 <option value="${cityId}">${city}</option>

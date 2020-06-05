@@ -1,6 +1,5 @@
 package com.eternal.weatherAPP;
 
-import com.eternal.weatherAPP.Weather;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -23,7 +22,7 @@ public class WeatherService {
     private void initiateURI(String cityCode) throws MalformedURLException {
         weatherAPI = UriComponentsBuilder.fromUriString("https://api.openweathermap.org/data/2.5/weather")
                 .queryParam("id", cityCode)
-                .queryParam("units","metric")
+                .queryParam("units", "metric")
                 .queryParam("appid", apiKey)
                 .build().toUri().toURL();
     }
@@ -42,6 +41,6 @@ public class WeatherService {
     public Weather getWeather() throws IOException {
         String weatherData = getWeatherData();
         Gson gson = new GsonBuilder().create();
-        return gson.fromJson(weatherData,Weather.class);
+        return gson.fromJson(weatherData, Weather.class);
     }
 }
